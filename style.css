@@ -1,0 +1,361 @@
+/* a minimalist set of CSS resets */
+
+/* default to border-box */
+html {
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* Source: https://www.madebymike.com.au/writing/precise-control-responsive-typography/ */
+  --modal-size: calc(12px + (20 - 12) * ((100vw - 400px) / (800 - 400)));
+
+  --text-light: #000000;
+  --number-input-light: #ffffff;
+  --bkg-light: #f5f5f5;
+  --guide-img-light: #ffffff;
+  --modal-bkg-light: #e6e6fa;
+  --modal-a-light: #a045d1;
+  --theme-text-light: #f5f5f5;
+  --theme-bkg-light: #000000;
+
+  --text-dark: #ffffff;
+  --number-input-dark: #000000;
+  --bkg-dark: #292727;
+  --guide-img-dark: #ffffff;
+  --modal-bkg-dark: #800080;
+  --modal-a-dark: #afbbe3;
+  --theme-text-dark: #000000;
+  --theme-bkg-dark: #f5f5f5;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: var(--text-light);
+    --bkg: var(--bkg-light);
+    --number-input: var(--number-input-light);
+    --guide-img: var(--guide-img-light);
+    --modal-bkg: var(--modal-bkg-light);
+    --modal-a: var(--modal-a-light);
+    --theme-text: var(--theme-text-light);
+    --theme-bkg: var(--theme-bkg-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: var(--text-dark);
+    --bkg: var(--bkg-dark);
+    --number-input: var(--number-input-dark);
+    --guide-img: var(--guide-img-dark);
+    --modal-bkg: var(--modal-bkg-dark);
+    --modal-a: var(--modal-a-dark);
+    --theme-text: var(--theme-text-dark);
+    --theme-bkg: var(--theme-bkg-dark);
+  }
+}
+
+[color-theme="light"] {
+  --text: var(--text-light);
+  --bkg: var(--bkg-light);
+  --number-input: var(--number-input-light);
+  --guide-img: var(--guide-img-light);
+  --modal-bkg: var(--modal-bkg-light);
+  --modal-a: var(--modal-a-light);
+  --theme-text: var(--theme-text-light);
+  --theme-bkg: var(--theme-bkg-light);
+}
+
+[color-theme="dark"] {
+  --text: var(--text-dark);
+  --bkg: var(--bkg-dark);
+  --number-input: var(--number-input-dark);
+  --guide-img: var(--guide-img-dark);
+  --modal-bkg: var(--modal-bkg-dark);
+  --modal-a: var(--modal-a-dark);
+  --theme-text: var(--theme-text-dark);
+  --theme-bkg: var(--theme-bkg-dark);
+}
+
+/* adjust typography defaults */
+body {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 1rem;
+  font-family: sans-serif;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  height: auto;
+  background-color: var(--bkg);
+  color: var(--text);
+}
+
+navbar {
+  border: 1px solid black;
+}
+
+/* images and videos max out at full width */
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+input[type="button"] {
+  -webkit-appearance: none;
+}
+
+/* Game CSS */
+#game-board {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  padding: 0;
+  margin: 0;
+}
+
+#game-timer {
+  width: 50vmin;
+}
+
+#solve-timer {
+  width: 30vmin;
+}
+
+#key-input {
+  width: 40vmin;
+  justify-content: center;
+  align-items: center;
+}
+
+#keyboard {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 50vh;
+}
+
+#equation {
+  font-size: 5vmin;
+  font-family: "Source Code Pro", monospace;
+  font-weight: bolder;
+}
+
+#score {
+  font-size: 3vmax;
+  margin-top: 0px;
+}
+
+.heading {
+  font-family: "Bad Script", cursive;
+  font-size: 50px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  align-items: center;
+}
+
+.timerbar {
+  width: 100%;
+  height: 3vmin;
+  margin: 10px auto;
+  /* padding: 1px; */
+  border: solid 1px #3b2825;
+  border-radius: 10px;
+}
+
+.timerbar .inner {
+  height: 2.9vmin;
+  width: 100%;
+  border-radius: 10px;
+  animation: timerbar-countdown;
+  /* Placeholder, this will be updated using javascript */
+  animation-duration: 40s;
+  /* We stop in the end */
+  animation-iteration-count: 1;
+  /* Stay on pause when the animation is finished */
+  animation-fill-mode: forwards;
+  /* We start paused, we start the animation using javascript */
+  animation-play-state: paused;
+  /* We want a linear animation, ease-out is standard */
+  animation-timing-function: linear;
+}
+
+@keyframes timerbar-countdown {
+  0%,
+  100% {
+    width: 100%;
+    background: #35ea20;
+  }
+  99.99% {
+    width: 0%;
+    background: #ea3f20;
+  }
+}
+
+.theme {
+  position: absolute;
+  top: 1vmin;
+  left: 1vmin;
+  height: 8vmin;
+  width: 8vmin;
+  border-radius: 10px;
+  font-size: var(--modal-size);
+  padding: 1px;
+  text-align: center;
+  color: var(--theme-text);
+  background-color: var(--theme-bkg);
+}
+
+.wrapper {
+  position: absolute;
+  top: 2vmin;
+  right: 2vmin;
+  height: 5vmin;
+  width: auto;
+  margin-top: 10px;
+  /* This part is important for centering the content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* End center */
+  border-radius: 5px;
+}
+
+.wrapper img {
+  height: 50px;
+  width: 50px;
+  background-color: var(--guide-img);
+  border-radius: 3px;
+}
+
+.wrapper img:hover {
+  height: 50px;
+  width: 50px;
+  padding: 15px;
+  background-color: #e6e6fa;
+  border-radius: 3px;
+  color: #585858;
+}
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, 0.7);
+  transition: all 0.4s;
+  font-size: var(--modal-size);
+  height: 100vh;
+}
+
+.modal:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__content {
+  border-radius: 4px;
+  position: relative;
+  width: 80%;
+  max-width: 90%;
+  background: var(--modal-bkg);
+  padding: 1em 2em;
+  height: 90%;
+  overflow: auto;
+}
+
+.modal__footer {
+  text-align: right;
+}
+
+.modal__footer a {
+   color: var(--modal-a);
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-block {
+  display: inline-block;
+  height: auto;
+  text-align: left;
+}
+
+.content-block input {
+  height: 5vw + var(--modal-size);
+  width: 10vw + var(--modal-size);
+}
+
+.number-select {
+  width: var(--modal-size) - 5vmax;
+  font-size: var(--modal-size);
+}
+
+.btn {
+  display: inline-block;
+  height: 10vmin;
+  width: 10vmin;
+  margin: 1vmin;
+  background-color: #969393;
+  color: var(--number-input);
+  opacity: 100%;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  font-size: 2vmax;
+}
+
+.btn:hover {
+  background-color: #19e631;
+}
+
+.exw {
+  width: fit-content;
+  padding-left: 1vmin;
+  padding-right: 1vmin;
+}
+
+/* Reference: https://stackoverflow.com/a/66201076 */
+input[type="radio"] {
+  width: var(--modal-size);
+  height: var(--modal-size);
+}
+
+input[type="radio"]:checked {
+  width: var(--modal-size);
+  height: var(--modal-size);
+}

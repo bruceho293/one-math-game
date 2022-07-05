@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Source+Code+Pro:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <!-- this is the start of content -->
+    <p class="heading">ONE Math</p>
+    <div>
+      <input class="theme" type="button" value="Da" />
+    </div>
+    <div id="guide" class="wrapper">
+      <img
+        src="https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/gear.svg?v=1655844625460"
+      />
+    </div>
+    <div id="game-board">
+      <input
+        class="btn exw"
+        id="btnStart"
+        type="button"
+        value="Start"
+        onclick="startGame();"
+      />
+      <p id="score">Your Score: 0</p>
+      <div id="game-timer" class="timerbar">
+        <div class="inner"></div>
+      </div>
+      <div id="solve-timer" class="timerbar">
+        <div class="inner"></div>
+      </div>
+      <p id="equation"></p>
+
+      <div id="keyboard" class="container">
+        <div id="key-input">
+          <input class="btn" type="button" data-value="7" value="7" />
+          <input class="btn" type="button" data-value="8" value="8" />
+          <input class="btn" type="button" data-value="9" value="9" />
+          <input class="btn" type="button" data-value="4" value="4" />
+          <input class="btn" type="button" data-value="5" value="5" />
+          <input class="btn" type="button" data-value="6" value="6" />
+          <input class="btn" type="button" data-value="1" value="1" />
+          <input class="btn" type="button" data-value="2" value="2" />
+          <input class="btn" type="button" data-value="3" value="3" />
+          <input class="btn" type="button" data-value="0" value="0" />
+          <input
+            class="btn exw"
+            type="button"
+            data-value="-1"
+            value="INF/UND"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- The modal box for Guide and Setting for the Game     -->
+    <!-- Source: https://codepen.io/denic/pen/ZEbKgPp     -->
+    <div id="guide-modal" class="modal">
+      <div class="modal__content">
+        <div class="content-block">
+          <section>
+            <h2>Configuration</h2>
+            <p>
+              You can change how many 1s in an equation as well as the time for
+              you to solve and the time for the whole game. The harder it gets,
+              the more points you earn per correct answer.
+            </p>
+            <div id="configuration">
+              <p>
+                Max Operands:
+                <input
+                  type="radio"
+                  id="normal"
+                  name="game-level"
+                  value="5"
+                  checked
+                />
+                <label for="normal">5 (Normal)</label>
+                <input type="radio" id="hard" name="game-level" value="6" />
+                <label for="hard">6 (Hard)</label>
+                <input type="radio" id="extreme" name="game-level" value="7" />
+                <label for="extreme">7 (Extreme)</label>
+              </p>
+              <p id="solveTimeValue">
+                Solve Time:
+<!--                 <input
+                  type="radio"
+                  id="0.5s"
+                  name="solve-timer-value"
+                  value="0.5"
+                />
+                <label for="0.5s">0.5s</label> -->
+                <input
+                  type="radio"
+                  id="1s"
+                  name="solve-timer-value"
+                  value="1"
+                />
+                <label for="1s">1s</label>
+                <input
+                  type="radio"
+                  id="1.5s"
+                  name="solve-timer-value"
+                  value="1.5"
+                />
+                <label for="1.5s">1.5s</label>
+                <input
+                  type="radio"
+                  id="2s"
+                  name="solve-timer-value"
+                  value="2"
+                />
+                <label for="2s">2s</label>
+                <input
+                  type="radio"
+                  id="2.5s"
+                  name="solve-timer-value"
+                  value="2.5"
+                />
+                <label for="2.5s">2.5s</label>
+                <input
+                  type="radio"
+                  id="3s"
+                  name="solve-timer-value"
+                  value="3"
+                  checked
+                />
+                <label for="3s">3s</label>
+              </p>
+              <p id="gameTimeValue">
+                Game Time:
+                <input
+                  type="radio"
+                  id="10s"
+                  name="game-timer-value"
+                  value="10"
+                />
+                <label for="10s">10s</label>
+                <input
+                  type="radio"
+                  id="15s"
+                  name="game-timer-value"
+                  value="15"
+                />
+                <label for="15s">15s</label>
+                <input
+                  type="radio"
+                  id="20s"
+                  name="game-timer-value"
+                  value="20"
+                />
+                <label for="20s">20s</label>
+                <input
+                  type="radio"
+                  id="25s"
+                  name="game-timer-value"
+                  value="25"
+                />
+                <label for="25">25s</label>
+                <input
+                  type="radio"
+                  id="30s"
+                  name="game-timer-value"
+                  value="30"
+                  checked
+                />
+                <label for="30s">30s</label>
+              </p>
+            </div>
+          </section>
+          <section>
+            <h2>How To Play</h2>
+            <p>
+              Try your best to get the right answer after solving the equation
+              within the time limit until the game reaches the end.
+            </p>
+            <p>
+              The only operand/number is number 1 and the operators/operations
+              are addition(+), substraction(-), multiplication(*) and
+              division(/). The result can be Infinity or Underfined if there's a
+              zero division.
+            </p>
+            <p>
+              You can play the game using keyboard. All the number key from 0 to
+              9 have been binded. For INF/UND button, the corresponding key
+              would be the key to the right of the key 0 on the keyboard. (Key
+              '-/_' on the horizontal line or Key "./Del" on numpad).
+            </p>
+          </section>
+          <section>
+            <h2>Equation Evaluation</h2>
+            <p>
+              For each equation, the final result is computed in the following
+              ways:
+            </p>
+            <ol>
+              <li>
+                Use absolute function abs() to make negative number into
+                positive number.
+              </li>
+              <li>If the new result is greater then 10, subtract it by 10.</li>
+            </ol>
+            <p>
+              <b>Example:</b><br />
+              Result = -0 (1)&#x2192; 0 (2)&#x2192; 0<br />
+              Result = -4 (1)&#x2192; 4 (2)&#x2192; 4<br />
+              Result = 11 (1)&#x2192; 11 (2)&#x2192; 1<br />
+            </p>
+          </section>
+        </div>
+        <div class="modal__footer">
+          Made in Glitch, by
+          <a href="https://glitch.com/~one-math-game" target="_blank">Huan</a>
+        </div>
+        <a href="#" class="modal__close">&times;</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -171,6 +171,8 @@ const VALUE_TO_ID = {
   2: "2s",
   2.5: "2.5s",
   3: "3s",
+  5: "5s",
+  10: "10s",
 
   // Game Time
   10: "10s",
@@ -178,6 +180,7 @@ const VALUE_TO_ID = {
   20: "20s",
   25: "25s",
   30: "30s",
+  60: "60s",
 };
 
 // The quantity of num 1s in the equation by default.
@@ -186,11 +189,11 @@ const MIN_NUM = 3;
 
 // All the time are in seconds.
 const MIN_SOLVE_TIME = 0.5;
-const MAX_SOLVE_TIME = 3.0;
-const ADJUST_SOLVE_TIME = 0.5;
+const MAX_SOLVE_TIME = 10.0;
+
 const MIN_GAME_TIME = 10;
-const MAX_GAME_TIME = 30;
-const ADJUST_GAME_TIME = 5;
+const MAX_GAME_TIME = 60;
+
 
 // Defauly setup.
 var currentNums = MAX_NUM;

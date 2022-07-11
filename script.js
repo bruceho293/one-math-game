@@ -35,7 +35,13 @@ class Equation {
         result = lhs_result * rhs_result;
         break;
       case "/":
-        result = lhs_result / rhs_result;
+        // Check if rhs_result is Infinity.
+        // If so, final result should be Undefined.
+        // Since Underfined and Infiity are valuated the same, reassign the value to Infinity.
+        if (rhs_result == Infinity)
+          result = Infinity;
+        else
+          result = lhs_result / rhs_result;
         break;
       default:
         throw "Unsupported Operator.";
@@ -194,7 +200,6 @@ const MAX_SOLVE_TIME = 10.0;
 const MIN_GAME_TIME = 10;
 const MAX_GAME_TIME = 60;
 
-
 // Defauly setup.
 var currentNums = MAX_NUM;
 
@@ -339,7 +344,7 @@ function generateScore(solve_time, game_time, max_ones) {
 }
 
 function showGuide() {
-  let guide = document.getElementById("guide");
+  const guide = document.getElementById("guide");
 
   function showModalBox() {
     window.location.href = "#guide-modal";

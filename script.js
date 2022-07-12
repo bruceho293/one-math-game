@@ -231,6 +231,10 @@ function sound(src) {
   };
 }
 
+var soundSrc =
+    "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/Point.wav?v=1656871945671";
+var pointSound;
+
 function generateOperator() {
   let op_i = Math.floor(Math.random() * OPERATORS.length);
   return OPERATORS[op_i];
@@ -335,7 +339,7 @@ function resetTimer(id) {
 }
 
 function generateScore(solve_time, game_time, max_ones) {
-  let base_score = 300;
+  let base_score = 100;
   let bonus_short_time = 250 * (3 / solve_time);
   let bonus_short_game_time = 100 * (30 / game_time);
   let bonus_max_ones = 100 * (max_ones - 4);
@@ -364,10 +368,6 @@ function startGame() {
   let equationBoard = document.getElementById("equation");
   let scoreBoard = document.getElementById("score");
   let btnStartGame = document.getElementById("btnStart");
-
-  let soundSrc =
-    "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/Point.wav?v=1656871945671";
-  let pointSound = new sound(soundSrc);
 
   let gameOver = false;
   let gameStarted = false;
@@ -549,6 +549,7 @@ window.onload = function () {
   changeRadioSelected(radioLevelId);
   changeRadioSelected(radioSolveTimeId);
   changeRadioSelected(radioGameTimeId);
+  pointSound = new sound(soundSrc);
 };
 
 // Source: https://github.com/coding-in-public/light-dark/tree/main

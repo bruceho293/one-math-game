@@ -38,10 +38,8 @@ class Equation {
         // Check if rhs_result is Infinity.
         // If so, final result should be Undefined.
         // Since Underfined and Infiity are valuated the same, reassign the value to Infinity.
-        if (rhs_result == Infinity)
-          result = Infinity;
-        else
-          result = lhs_result / rhs_result;
+        if (rhs_result == Infinity) result = Infinity;
+        else result = lhs_result / rhs_result;
         break;
       default:
         throw "Unsupported Operator.";
@@ -232,8 +230,12 @@ function sound(src) {
 }
 
 var soundSrc =
-    "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/Point.wav?v=1656871945671";
+  "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/Point.wav?v=1656871945671";
 var pointSound;
+
+var losingSoundSrc =
+  "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/mixkit-8-bit-lose-2031.wav?v=1657740227535";
+var losingSound;
 
 function generateOperator() {
   let op_i = Math.floor(Math.random() * OPERATORS.length);
@@ -358,6 +360,11 @@ function showGuide() {
 }
 
 function startGame() {
+  if (pointSound == null)
+      pointSound = new sound(soundSrc);
+  if (losingSound == null)
+      losingSound = new sound(losingSoundSrc);
+
   let solveTime = parseInt(getValueFromRadioInputs("solve-timer-value"));
   let gameTime = parseInt(getValueFromRadioInputs("game-timer-value"));
   currentNums = parseInt(getValueFromRadioInputs("game-level"));
@@ -423,6 +430,7 @@ function startGame() {
   }
 
   function gameEnd() {
+    losingSound.play();
     resetTimer("solve-timer");
     resetTimer("game-timer");
     gameOver = true;
@@ -549,7 +557,6 @@ window.onload = function () {
   changeRadioSelected(radioLevelId);
   changeRadioSelected(radioSolveTimeId);
   changeRadioSelected(radioGameTimeId);
-  pointSound = new sound(soundSrc);
 };
 
 // Source: https://github.com/coding-in-public/light-dark/tree/main
@@ -589,3 +596,7 @@ themeBtn.addEventListener("click", () => {
 window.addEventListener("DOMContentLoaded", () => {
   loadTheme(getCurrentTheme());
 });
+
+if (location.protocol != 'https:') {
+ location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}

@@ -238,11 +238,11 @@ function sound(src) {
 }
 
 var soundSrc =
-  "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/Point.wav?v=1656871945671"
+  "./assets/sound/point_sound.wav"
 var pointSound
 
 var losingSoundSrc =
-  "https://cdn.glitch.global/79700202-9bb0-4a94-a27b-5285525350ec/mixkit-8-bit-lose-2031.wav?v=1657740227535"
+  "./assets/sound/losing_sound.wav"
 var losingSound
 
 function generateOperator() {
